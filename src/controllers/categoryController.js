@@ -22,3 +22,12 @@ exports.createCategory = async (req, res) => {
     return res.status(500).json({ error: error.message });
   }
 }
+
+exports.getCategories = async (req, res) => {
+  try {
+    const categories = await prisma.category.findMany();
+    return res.status(200).json(categories);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+}
